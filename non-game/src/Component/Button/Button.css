@@ -1,0 +1,73 @@
+.dropbtn {
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  transition: 0.8s ease;
+}
+
+.dropbtn:hover {
+  background-color: #23c483;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  /* transform: translateY(-7px); */
+}
+.dropbtn:active {
+  transform: translateY(-1px);
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  transition: 0.8s ease;
+}
+
+.dropbtn-content {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  transition: 0.8s ease;
+}
+
+.dropbtn-content div {
+  display: flex;
+  flex-direction: column;
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  white-space: nowrap;
+}
+
+.dropbtn-content div:hover {
+  background-color: #23c483;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+.dropbtn-content div:active {
+  transform: translateY(-1px);
+}
+
+.dropdown:hover .dropbtn-content {
+  display: block;
+  transition: 0.8s ease;
+}

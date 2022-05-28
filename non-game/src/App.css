@@ -1,0 +1,31 @@
+.main {
+  width: 100vwvw;
+  height: 100vh;
+}
+
+.CenterAll {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.Vertical {
+  flex-direction: column;
+}
+
+.Spaces {
+  row-gap: 8px;
+}
+
+.MinterZone {
+  width: 30vw;
+  height: 30vh;
+  background-color: #f0f0f0;
+}
+
+.Hide {
+  display: none;
+}
+
+/* frem here */
