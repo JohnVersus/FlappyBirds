@@ -5,13 +5,15 @@ import MainButton from "./Component/Button/Button";
 function App() {
   const { authenticate, isAuthenticated, user, logout } = useMoralis();
   function test() {
-    alert("Test");
+    alert("test");
   }
+
+  // object structure { Function: logout, Name: "LogOut" }
 
   if (!isAuthenticated) {
     return (
       <div className="main CenterAll Vertical Spaces">
-        <MainButton Function={authenticate} Name="Click Me" />
+        <MainButton data={[{ Function: authenticate, Name: "Login" }]} />
       </div>
     );
   }
@@ -20,9 +22,9 @@ function App() {
       <div className="main CenterAll Vertical Spaces">
         <div className="MinterZone" id="MinterZone"></div>
         <MainButton
-          ButtonData={[
-            { Function: logout, Name: "Logout" },
-            { Function: test, Name: "test" },
+          data={[
+            { Function: logout, Name: "LogOut" },
+            { Function: test, Name: "Testing" },
           ]}
         />
       </div>

@@ -1,9 +1,9 @@
 import "./Button.css";
 
 function MainButton(props) {
-  props.map((e) => {
-    alert(e.Function);
-  });
+  // props.data.map((e) => {
+  //   alert(e.toString());
+  // });
   return (
     // <>
     //   <button
@@ -15,9 +15,9 @@ function MainButton(props) {
     //   </button>
     // </>
     <div class="dropdown">
-      <div class="dropbtn">Click Me</div>
+      <div class="dropbtn">Check Me</div>
       <div class="dropbtn-content">
-        {props.map((e) => {
+        {props.data.map((e) => {
           return (
             <div
               onClick={() => {
