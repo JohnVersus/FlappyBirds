@@ -1,6 +1,9 @@
 import "./Button.css";
 
-function MainButton({ Name, Function }) {
+function MainButton(props) {
+  props.map((e) => {
+    alert(e.Function);
+  });
   return (
     // <>
     //   <button
@@ -12,10 +15,19 @@ function MainButton({ Name, Function }) {
     //   </button>
     // </>
     <div class="dropdown">
-      <button class="dropbtn">Click Me</button>
+      <div class="dropbtn">Click Me</div>
       <div class="dropbtn-content">
-        <div onClick={Function}>{Name}</div>
-        <div onClick={Function}>{Name}</div>
+        {props.map((e) => {
+          return (
+            <div
+              onClick={() => {
+                e.Function();
+              }}
+            >
+              {e.Name}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
