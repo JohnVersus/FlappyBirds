@@ -1,30 +1,94 @@
+import { useState } from "react";
 import "./App.css";
-import { useMoralis } from "react-moralis";
+import { useMoralis, useChain } from "react-moralis";
 import MainButton from "./Component/Button/Button";
+import FlappyGenerator from "./Component/FlappyGenerator/FlappyGenerator";
 
 function App() {
-  const { authenticate, isAuthenticated, user, logout } = useMoralis();
-  function test() {
-    alert("test");
+  const {
+    authenticate,
+    isAuthenticated,
+    user,
+    logout,
+    web3,
+    enableWeb3,
+    isWeb3Enabled,
+  } = useMoralis();
+  const { switchNetwork, chainId, chain, account } = useChain();
+
+  const [color, setColor] = useState("");
+
+  function getRandomColor() {
+    var letters = "0123456789ABCDEF";
+    var color = "#";
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    setColor(color);
   }
 
-  // object structure { Function: logout, Name: "LogOut" }
+  // object structure data={ Function: logout, Name: "LogOut" style = "" }
 
   if (!isAuthenticated) {
     return (
       <div className="main CenterAll Vertical Spaces">
-        <MainButton data={[{ Function: authenticate, Name: "Login" }]} />
+        <MainButton
+          MainName="No User"
+          data={[
+            {
+              Function: authenticate,
+              FunctionParma: {},
+              Name: "Login",
+              ButtonStyle: "Normal",
+            },
+          ]}
+        />
       </div>
     );
   }
-  if (isAuthenticated) {
+
+  if (isAuthenticated && chainId !== "0x4") {
+    if (!isWeb3Enabled) {
+      enableWeb3();
+    }
+    if (isWeb3Enabled) {
+      return (
+        <div className="main CenterAll Vertical Spaces">
+          <MainButton
+            MainName="Wrong Network"
+            data={[
+              {
+                Function: switchNetwork,
+                FunctionParma: "0x4",
+                Name: "To Rinkeby",
+                ButtonStyle: "",
+              },
+            ]}
+          />
+        </div>
+      );
+    }
+  } else {
     return (
       <div className="main CenterAll Vertical Spaces">
-        <div className="MinterZone" id="MinterZone"></div>
+        <div className="MinterZone CenterAll " id="MinterZone">
+          <FlappyGenerator color={color} />
+        </div>
         <MainButton
+          MainName="Check Me"
           data={[
-            { Function: logout, Name: "LogOut" },
-            { Function: test, Name: "Testing" },
+            {
+              Function: getRandomColor,
+              FunctionParma: {},
+              Name: "Generate Flappy",
+              ButtonStyle: "Normal",
+            },
+            {
+              Function: logout,
+              FunctionParma: {},
+              Name: "LogOut",
+              ButtonStyle: "",
+            },
           ]}
         />
       </div>
