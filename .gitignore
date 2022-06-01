@@ -1,3 +1,5 @@
 
 node_modules/
 non-game/node_modules
+.env
+non-game/.env

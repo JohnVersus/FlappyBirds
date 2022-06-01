@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import "./App.css";
 import { useMoralis, useChain } from "react-moralis";
@@ -15,7 +16,6 @@ function App() {
     isWeb3Enabled,
   } = useMoralis();
   const { switchNetwork, chainId, chain, account } = useChain();
-
   const [color, setColor] = useState("");
 
   function getRandomColor() {
@@ -27,18 +27,26 @@ function App() {
     setColor(color);
   }
 
+  // TODO: check if metamask extension is installed in the browser
+
   // object structure data={ Function: logout, Name: "LogOut" style = "" }
 
   if (!isAuthenticated) {
     return (
       <div className="main CenterAll Vertical Spaces">
         <MainButton
-          MainName="No User"
+          MainName="Connnect"
           data={[
             {
               Function: authenticate,
               FunctionParma: {},
-              Name: "Login",
+              Name: "Metamask",
+              ButtonStyle: "Normal",
+            },
+            {
+              Function: authenticate,
+              FunctionParma: { provider: "walletconnect" },
+              Name: "Wallet Connect",
               ButtonStyle: "Normal",
             },
           ]}
@@ -55,7 +63,7 @@ function App() {
       return (
         <div className="main CenterAll Vertical Spaces">
           <MainButton
-            MainName="Wrong Network"
+            MainName="Wrong Network!!"
             data={[
               {
                 Function: switchNetwork,
