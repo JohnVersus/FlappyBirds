@@ -7,6 +7,7 @@ function FlappySkeleton(props) {
   //wing1 = F2F2F2; wing2 = DDD3D3; body = F5C743;
   return (
     <svg
+      id="FlappySVG"
       xmlns="http://www.w3.org/2000/svg"
       width={width}
       height={height}

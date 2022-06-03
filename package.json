@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "console": "^0.7.2",
     "magic-sdk": "^8.1.1",
     "sass": "^1.52.1"
   }
