@@ -94,6 +94,9 @@ function App() {
       prevMetadataHash.current = metadataHash;
       console.log(metadataHash);
       fetch();
+      setFlappySVGString("");
+      setBirdHash("");
+      setMetadataHash("");
     }
   }, [metadataHash]);
 
