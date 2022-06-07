@@ -1,18 +1,12 @@
 function FlappySkeleton(props) {
   const width = 65.661 * 1.5;
-  const height = 46.478 * 1.5;
+  const height = 46.478 * 2;
 
   const { body, wing1, wing2 } = props;
 
   //wing1 = F2F2F2; wing2 = DDD3D3; body = F5C743;
   return (
-    <svg
-      id="FlappySVG"
-      xmlns="http://www.w3.org/2000/svg"
-      width={width}
-      height={height}
-      viewBox="0 0 65.661 46.478"
-    >
+    <svg id="FlappySVG" xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 65.661 46.478">
       {/* animate the svg up and down with a keyframe animation to make it look like it's flying  */}
       <animateTransform
         attributeName="transform"
@@ -25,11 +19,7 @@ function FlappySkeleton(props) {
         keySplines="0.2 0.2 0.4 0.8; 0.2 0.6 0.4 0.8"
         calcMode="spline"
       />
-      <g
-        id="Group_9"
-        data-name="Group 9"
-        transform="translate(-532.812 -329.522)"
-      >
+      <g id="Group_9" data-name="Group 9" transform="translate(-532.812 -329.522)">
         <path
           id="Path_58"
           data-name="Path 58"
@@ -51,12 +41,7 @@ function FlappySkeleton(props) {
             d="M231.493-382.113l-.085,1.915-3.859.085-3.887.085v3.634H220v11.549h3.662v-11.549h15.493v-3.634l-1.887-.085-1.915-.085-.085-1.915L235.183-384h-3.606Z"
             transform="translate(-190 391.887)"
           />
-          <path
-            id="Path_3"
-            data-name="Path 3"
-            d="M383.984-366.282l.085,3.746,1.915.085,1.887.085V-370H383.9Z"
-            transform="translate(-307.731 381.831)"
-          />
+          <path id="Path_3" data-name="Path 3" d="M383.984-366.282l.085,3.746,1.915.085,1.887.085V-370H383.9Z" transform="translate(-307.731 381.831)" />
           <path
             id="Path_4"
             data-name="Path 4"
@@ -87,12 +72,7 @@ function FlappySkeleton(props) {
             d="M390.352-315.744a6.154,6.154,0,0,0-.2,2v1.775H371v3.944l7.69.056,7.662.085v3.662l-7.662.084-7.69.056v3.662h19.155v-11.549h3.972l-.085-1.915-.085-1.887-1.69-.085A5.075,5.075,0,0,0,390.352-315.744Z"
             transform="translate(-298.465 342.955)"
           />
-          <path
-            id="Path_9"
-            data-name="Path 9"
-            d="M288-272.169v1.831h7.887v3.944H311.1v-3.944H295.887V-274H288Z"
-            transform="translate(-238.845 312.873)"
-          />
+          <path id="Path_9" data-name="Path 9" d="M288-272.169v1.831h7.887v3.944H311.1v-3.944H295.887V-274H288Z" transform="translate(-238.845 312.873)" />
         </g>
         <path
           id="Path_59"
@@ -102,27 +82,9 @@ function FlappySkeleton(props) {
           fill={wing1 || "#F2F2F2"}
         />
         <g id="Group_8" data-name="Group 8" transform="translate(26 -103)">
-          <path
-            id="Path_35"
-            data-name="Path 35"
-            d="M726.226,426.724v3.016h3.716v-3.016Z"
-            transform="translate(-215.626 30)"
-            fill={wing2 || "#DDD3D3"}
-          />
-          <path
-            id="Path_36"
-            data-name="Path 36"
-            d="M729.943,429.82h11.784l-.177,3.68h-11.5Z"
-            transform="translate(-215.626 30)"
-            fill={wing2 || "#DDD3D3"}
-          />
-          <path
-            id="Path_37"
-            data-name="Path 37"
-            d="M741.726,426.681h3.787V429.7h-3.787Z"
-            transform="translate(-215.626 30)"
-            fill={wing2 || "#DDD3D3"}
-          />
+          <path id="Path_35" data-name="Path 35" d="M726.226,426.724v3.016h3.716v-3.016Z" transform="translate(-215.626 30)" fill={wing2 || "#DDD3D3"} />
+          <path id="Path_36" data-name="Path 36" d="M729.943,429.82h11.784l-.177,3.68h-11.5Z" transform="translate(-215.626 30)" fill={wing2 || "#DDD3D3"} />
+          <path id="Path_37" data-name="Path 37" d="M741.726,426.681h3.787V429.7h-3.787Z" transform="translate(-215.626 30)" fill={wing2 || "#DDD3D3"} />
         </g>
         <path
           id="Path_57"
