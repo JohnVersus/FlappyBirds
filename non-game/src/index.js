@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import Test from "./test";
 import reportWebVitals from "./reportWebVitals";
 import { MoralisProvider } from "react-moralis";
 
@@ -12,7 +13,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
-      <App />
+      {/* <App /> */}
+      <Test />
     </MoralisProvider>
   </React.StrictMode>
 );

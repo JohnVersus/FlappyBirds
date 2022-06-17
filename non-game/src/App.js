@@ -1,7 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import { useMoralis } from "react-moralis";
 import console from "console";
-import { useChain, useWeb3ExecuteFunction, useMoralisWeb3Api, useMoralisFile } from "react-moralis";
+import {
+  useChain,
+  useWeb3ExecuteFunction,
+  useMoralisWeb3Api,
+  useMoralisFile,
+  useNativeBalance,
+} from "react-moralis";
 import { useState } from "react";
 import "./App.css";
 import MainButton from "./Component/Button/Button";
@@ -9,16 +15,49 @@ import FlappyGenerator from "./Component/FlappyGenerator/FlappyGenerator";
 import { FlappyBirdABI } from "./helpers/ABI";
 
 function App() {
-  const { authenticate, isAuthenticated, user, logout, web3, enableWeb3, isWeb3Enabled, Moralis } = useMoralis();
+  const {
+    authenticate,
+    isAuthenticated,
+    isAuthenticating,
+    user,
+    logout,
+    web3,
+    enableWeb3,
+    isWeb3Enabled,
+    Moralis,
+  } = useMoralis();
   const { switchNetwork, chainId, chain, account } = useChain();
   const [color, setColor] = useState("");
-  const [contractAddress, setContractAddress] = useState("0x4FA6E34102D27997a16A19674225e6598565C8E7");
+  const [contractAddress, setContractAddress] = useState(
+    "0x4FA6E34102D27997a16A19674225e6598565C8E7"
+  );
   const options = {
     contractAddress: contractAddress,
     abi: FlappyBirdABI,
   }; //console.log(user.get("ethAddress"));
   const Web3Api = useMoralisWeb3Api();
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      console.log(user.get("accounts"));
+    }
+  }, [isAuthenticated, user]);
+
+  // on account change handel here
+  useEffect(() => {
+    if (account !== null && prevAccount !== account) {
+      console.log(account);
+      if (
+        !isAuthenticating &&
+        user.get("accounts") !== null &&
+        user.get("accounts")[0] !== account
+      ) {
+        authenticate(); // not using this because auth need to happen with buttion click
+      }
+    }
+  }, [account]);
+
+  const prevAccount = useRef("");
   const [flappysvgString, setFlappySVGString] = useState("");
   const [birdHash, setBirdHash] = useState("");
   const [metadataHash, setMetadataHash] = useState("");
@@ -27,12 +66,21 @@ function App() {
   const prevMetadataHash = useRef("");
 
   // save the svg and upload the metadata to IPFS
-  const { error: error1, isUploading: isUploading1, moralisFile: moralisFile1, saveFile: saveFile1 } = useMoralisFile();
+  const {
+    error: error1,
+    isUploading: isUploading1,
+    moralisFile: moralisFile1,
+    saveFile: saveFile1,
+  } = useMoralisFile();
 
   useEffect(() => {
     console.log("Triggered by change in flappysvgString");
     async function run() {
-      if (flappysvgString !== "" && flappysvgString !== prevFlappySVGString.current && flappysvgString !== null) {
+      if (
+        flappysvgString !== "" &&
+        flappysvgString !== prevFlappySVGString.current &&
+        flappysvgString !== null
+      ) {
         prevFlappySVGString.current = flappysvgString;
         console.log(flappysvgString);
         const imageFile = { base64: window.btoa(flappysvgString) };
@@ -44,7 +92,11 @@ function App() {
   }, [flappysvgString]);
 
   useEffect(() => {
-    if (moralisFile1 !== null && moralisFile1.hash !== "" && moralisFile1._hash !== prevBirdHash.current) {
+    if (
+      moralisFile1 !== null &&
+      moralisFile1.hash !== "" &&
+      moralisFile1._hash !== prevBirdHash.current
+    ) {
       prevBirdHash.current = birdHash;
       setBirdHash("ipfs://" + moralisFile1._hash);
       console.log("Set bird hash");
@@ -52,12 +104,21 @@ function App() {
   }, [moralisFile1]);
 
   // save the metadata and upload to IPFS
-  const { error: error2, isUploading: isUploading2, moralisFile: moralisFile2, saveFile: saveFile2 } = useMoralisFile();
+  const {
+    error: error2,
+    isUploading: isUploading2,
+    moralisFile: moralisFile2,
+    saveFile: saveFile2,
+  } = useMoralisFile();
 
   useEffect(() => {
     console.log("Triggered by change in birdHash");
     console.log(birdHash);
-    if (birdHash !== null && birdHash !== "" && birdHash !== prevBirdHash.current) {
+    if (
+      birdHash !== null &&
+      birdHash !== "" &&
+      birdHash !== prevBirdHash.current
+    ) {
       console.log(birdHash);
       prevMetadataHash.current = metadataHash;
       const metadata = {
@@ -90,7 +151,11 @@ function App() {
   useEffect(() => {
     console.log("Triggered by change in metadataHash");
     console.log(metadataHash);
-    if (metadataHash !== "" && metadataHash !== null && prevMetadataHash.current !== metadataHash) {
+    if (
+      metadataHash !== "" &&
+      metadataHash !== null &&
+      prevMetadataHash.current !== metadataHash
+    ) {
       prevMetadataHash.current = metadataHash;
       console.log(metadataHash);
       fetch();
@@ -144,6 +209,7 @@ function App() {
   // object structure data={ Function: logout, Name: "LogOut" style = "" }
 
   if (!isAuthenticated) {
+    prevAccount.current = account;
     return (
       <div className="main CenterAll Vertical Spaces">
         <MainButton
@@ -151,13 +217,23 @@ function App() {
           data={[
             {
               Function: authenticate,
-              FunctionParma: {},
+              FunctionParam: {},
               Name: "Metamask",
               ButtonStyle: "Normal",
             },
             {
               Function: authenticate,
-              FunctionParma: { provider: "walletconnect" },
+              FunctionParam: {
+                provider: "walletconnect",
+                mobileLinks: [
+                  "rainbow",
+                  "metamask",
+                  "argent",
+                  "trust",
+                  "imtoken",
+                  "pillar",
+                ],
+              },
               Name: "Wallet Connect",
               ButtonStyle: "Normal",
             },
@@ -179,8 +255,14 @@ function App() {
             data={[
               {
                 Function: switchNetwork,
-                FunctionParma: "0x13881",
+                FunctionParam: "0x13881",
                 Name: "To Mumbai🚀",
+                ButtonStyle: "Normal",
+              },
+              {
+                Function: logout,
+                FunctionParam: {},
+                Name: "LogOut",
                 ButtonStyle: "",
               },
             ]}
@@ -200,19 +282,19 @@ function App() {
           data={[
             {
               Function: getRandomColor,
-              FunctionParma: {},
+              FunctionParam: {},
               Name: "Generate Flappy",
               ButtonStyle: "Normal",
             },
             {
               Function: processUpload, //function to be updated
-              FunctionParma: {},
+              FunctionParam: {},
               Name: "Mint Flappy",
               ButtonStyle: "Normal",
             },
             {
               Function: logout,
-              FunctionParma: {},
+              FunctionParam: {},
               Name: "LogOut",
               ButtonStyle: "",
             },
@@ -233,7 +315,7 @@ function App() {
           data={[
             {
               Function: "Visitgame", // function to be updated to redirect to game.
-              FunctionParma: {},
+              FunctionParam: {},
               Name: "Visit game",
               ButtonStyle: "Normal",
             },
