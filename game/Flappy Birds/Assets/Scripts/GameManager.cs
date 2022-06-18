@@ -41,7 +41,9 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0); ;
+        
+
     }
 
     public void Quit()

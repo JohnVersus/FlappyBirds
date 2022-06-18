@@ -6,3 +6,5 @@ non-game/src/unused.js
 .env
 non-game/.env
 cloudCode/
+game/Flappy Birds/Assets/Scripts/FetchFlappy.cs
+game/Flappy Birds/Assets/Scripts/FetchFlappy.cs.meta

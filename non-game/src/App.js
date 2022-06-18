@@ -7,6 +7,7 @@ import {
   useMoralisWeb3Api,
   useMoralisFile,
   useNativeBalance,
+  useMoralisQuery,
 } from "react-moralis";
 import { useState } from "react";
 import "./App.css";

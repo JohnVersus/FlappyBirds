@@ -1,17 +1,17 @@
 ﻿<Properties StartupConfiguration="{1628990F-B769-ADBC-F68D-8D4FAB2E6FC3}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CameraFollow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/FetchSVG.cs">
     <Files>
-      <File FileName="Assets/PlayerMovement.cs" Line="13" Column="36" />
-      <File FileName="Assets/CameraFollow.cs" Line="1" Column="1" />
-      <File FileName="Assets/PlayerCollision.cs" Line="30" Column="32" />
-      <File FileName="Assets/GameManager.cs" Line="40" Column="28" />
+      <File FileName="Assets/Scripts/FetchFlappy.cs" Line="39" Column="34" />
+      <File FileName="Assets/Scripts/FetchSVG.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Flappy Birds" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="CameraFollow.cs" selected="True" />
+              <Node name="Scripts" expanded="True">
+                <Node name="FetchSVG.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
@@ -20,7 +20,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="1105b55d-ba8f-4d9c-8a6b-2922dfaf8908" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="39f15ec9-79fa-4f51-9ad7-35fd3e98597c" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
