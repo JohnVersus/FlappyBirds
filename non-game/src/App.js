@@ -8,6 +8,7 @@ import {
   useMoralisFile,
   useNativeBalance,
   useMoralisQuery,
+  useApiContract,
 } from "react-moralis";
 import { useState } from "react";
 import "./App.css";
@@ -46,14 +47,14 @@ function App() {
 
   // on account change handel here
   useEffect(() => {
-    if (account !== null && prevAccount !== account) {
+    if (account && user && prevAccount !== account) {
       console.log(account);
       if (
         !isAuthenticating &&
         user.get("accounts") !== null &&
         user.get("accounts")[0] !== account
       ) {
-        authenticate(); // not using this because auth need to happen with buttion click
+        //authenticate(); // not using this because auth need to happen with buttion click
       }
     }
   }, [account]);
@@ -171,7 +172,7 @@ function App() {
       console.log(data);
     }
     if (error !== null) {
-      console.log(error);
+      console.log(JSON.stringify(error));
     }
     if (error1 !== null) {
       console.log(error1);
@@ -224,17 +225,7 @@ function App() {
             },
             {
               Function: authenticate,
-              FunctionParam: {
-                provider: "walletconnect",
-                mobileLinks: [
-                  "rainbow",
-                  "metamask",
-                  "argent",
-                  "trust",
-                  "imtoken",
-                  "pillar",
-                ],
-              },
+              FunctionParam: { provider: "walletconnect" },
               Name: "Wallet Connect",
               ButtonStyle: "Normal",
             },

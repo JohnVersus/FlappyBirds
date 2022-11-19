@@ -1,7 +1,10 @@
 {
   "dependencies": {
+    "@web3auth/web3auth": "^1.2.1",
+    "@web3uikit/icons": "^0.1.4",
     "console": "^0.7.2",
     "magic-sdk": "^8.1.1",
+    "moralis": "^1.9.1",
     "sass": "^1.52.1"
   }
 }
